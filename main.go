@@ -9,7 +9,8 @@ import (
 	"net/http"
 	"os"
 	"time"
-  "github.com/mtlmacedo/go-blockchain/models"
+
+	"github.com/mtlmacedo/go-blockchain/models"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/gorilla/mux"
@@ -102,7 +103,6 @@ type Message struct {
 	BPM int
 }
 
-
 func handleWriteBlock(w http.ResponseWriter, r *http.Request) {
 	var m Message
 
@@ -147,7 +147,7 @@ func main() {
 
 	go func() {
 		t := time.Now()
-		genesisBlock := models.Block{0, t.String(), 0, "", ""}
+		genesisBlock := models.Block{Index: 0, Timestamp: t.String(), BPM: 0, Hash: "", PrevHash: ""}
 		spew.Dump(genesisBlock)
 		Blockchain = append(Blockchain, genesisBlock)
 	}()
